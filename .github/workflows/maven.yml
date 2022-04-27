@@ -29,6 +29,7 @@ jobs:
       with:
           image: kushal1708/ourhero-project-backend
           tags: latest
+          registry: docker.io
           dockerfile: Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ kushal1708 }}
+          password: ${{ Hellodocker }}
