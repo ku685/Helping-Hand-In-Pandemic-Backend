@@ -73,6 +73,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>ourhero-project-backend</finalName>
 	</build>
 
 </project>
