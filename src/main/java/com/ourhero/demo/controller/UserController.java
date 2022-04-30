@@ -49,18 +49,38 @@ public class UserController {
     }
 
     //update User
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody  User userDetails)
+    @PutMapping("/enable/{id}")
+    public ResponseEntity<User> enableUser(@PathVariable Long id)
     {
         User  user=userRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("user not exist with id"+id));
 
-        user.setFullName(userDetails.getFullName());
-        user.setAddress(userDetails.getAddress());
-        user.setEmail(userDetails.getEmail());
+//        user.setFullName(userDetails.getFullName());
+//        user.setAddress(userDetails.getAddress());
+//        user.setEmail(userDetails.getEmail());
+        user.setStatus("enable");
         User updateUser=userRepository.save(user);
         return ResponseEntity.ok(updateUser);
 
     }
+
+    @PutMapping("/disable/{id}")
+    public ResponseEntity<User> disableUser(@PathVariable Long id)
+    {
+        User  user=userRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("user not exist with id"+id));
+
+//        user.setFullName(userDetails.getFullName());
+//        user.setAddress(userDetails.getAddress());
+//        user.setEmail(userDetails.getEmail());
+        System.out.println(user);
+        user.setStatus("disable");
+
+        User updateUser=userRepository.save(user);
+        System.out.println(updateUser);
+        return ResponseEntity.ok(updateUser);
+
+    }
+
+
     //Delete user
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String,Boolean>>deleteUser(@PathVariable Long id){
@@ -72,6 +92,8 @@ public class UserController {
         return ResponseEntity.ok(response);
 
     }
+
+   // @PutMapping("/enable")
 
 
 }
