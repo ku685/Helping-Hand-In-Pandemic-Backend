@@ -46,18 +46,34 @@ public class VolunteerController {
     //}
 
     //update User
-    @PutMapping("/{id}")
-    public ResponseEntity<Volunteer> updateVolunteer(@PathVariable Long id, @RequestBody   Volunteer volunteerDetails)
+    @PutMapping("/enable/{id}")
+    public ResponseEntity<Volunteer> enableVolunteer(@PathVariable Long id)
     {
         Volunteer  volunteer=volunteerRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("volunteer not exist with id"+id));
 
-        volunteer.setFullName(volunteerDetails.getFullName());
-        volunteer.setAddress(volunteerDetails.getAddress());
-        volunteer.setEmail(volunteerDetails.getEmail());
+//        volunteer.setFullName(volunteerDetails.getFullName());
+//        volunteer.setAddress(volunteerDetails.getAddress());
+//        volunteer.setEmail(volunteerDetails.getEmail());
+        volunteer.setStatus("enable");
         Volunteer updateVolunteer=volunteerRepository.save(volunteer);
         return ResponseEntity.ok(updateVolunteer);
 
     }
+    @PutMapping("/disable/{id}")
+    public ResponseEntity<Volunteer> disableVolunteer(@PathVariable Long id)
+    {
+        Volunteer  volunteer=volunteerRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("volunteer not exist with id"+id));
+
+//        volunteer.setFullName(volunteerDetails.getFullName());
+//        volunteer.setAddress(volunteerDetails.getAddress());
+//        volunteer.setEmail(volunteerDetails.getEmail());
+        volunteer.setStatus("disable");
+        Volunteer updateVolunteer=volunteerRepository.save(volunteer);
+        return ResponseEntity.ok(updateVolunteer);
+
+    }
+
+
     //Delete user
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String,Boolean>>deleteVolunteer(@PathVariable Long id){

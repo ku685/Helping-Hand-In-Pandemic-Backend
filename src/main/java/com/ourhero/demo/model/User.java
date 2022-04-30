@@ -43,6 +43,9 @@ public class User {
     @Column(name="pincode",nullable = false)
     private Integer pincode;
 
+
+    @Column(name="status",nullable = false)
+    private String status;
     private  String token;
 
 //    @OneToMany(mappedBy = "volunteer")
